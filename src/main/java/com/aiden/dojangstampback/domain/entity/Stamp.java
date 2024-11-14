@@ -44,6 +44,7 @@ public class Stamp {
         this.width = width;
         this.height = height;
         this.price = price;
+        this.createdAt = LocalDateTime.now();
     }
 
 }

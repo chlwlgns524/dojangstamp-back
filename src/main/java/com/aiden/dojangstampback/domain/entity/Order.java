@@ -3,6 +3,7 @@ package com.aiden.dojangstampback.domain.entity;
 import com.aiden.dojangstampback.domain.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +17,6 @@ public class Order {
 
     @Id
     private Long id;
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     private String content;
@@ -36,5 +34,18 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "stamp_id", referencedColumnName = "id", nullable = false)
     private Stamp stamp;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @Builder
+    public Order(String content, Integer quantity, String memo, OrderStatus status, Stamp stamp) {
+        this.content = content;
+        this.quantity = quantity;
+        this.memo = memo;
+        this.status = status;
+        this.stamp = stamp;
+        this.createdAt = LocalDateTime.now();
+    }
 
 }
