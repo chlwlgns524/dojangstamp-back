@@ -1,0 +1,25 @@
+# application-dev.yml
+spring:
+    config:
+        activate:
+            on-profile: dev
+
+    datasource:
+        url: jdbc:mysql://localhost:3306/test
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+        hibernate:
+            ddl-auto: update          # 테이블이 자동으로 생성/업데이트 되도록 설정
+        show-sql: true              # 쿼리를 콘솔에 출력
+        properties:
+            hibernate:
+                format_sql: true        # SQL 포맷팅
+        open-in-view: false
+
+    h2:
+        console:
+            enabled: true             # H2 콘솔을 활성화 (MySQL 외 임시 데이터베이스 사용 시)
+            path: /h2-console
