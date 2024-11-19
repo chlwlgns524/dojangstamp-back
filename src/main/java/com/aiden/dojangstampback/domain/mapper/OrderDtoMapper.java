@@ -10,7 +10,9 @@ public class OrderDtoMapper {
     public static OrderDto mapToDto(Order order) {
         return new OrderDto(
                 order.getId(),
+                order.getOrderDate(),
                 order.getCreatedAt(),
+                order.getModifiedAt(),
                 order.getContent(),
                 order.getQuantity(),
                 order.getMemo(),

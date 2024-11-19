@@ -35,8 +35,14 @@ public class Order {
     @JoinColumn(name = "stamp_id", referencedColumnName = "id", nullable = false)
     private Stamp stamp;
 
+    @Column(name = "order_date", nullable = false)
+    private LocalDateTime orderDate;
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "modified_at", nullable = false)
+    private LocalDateTime modifiedAt;
 
     @Builder
     public Order(String content, Integer quantity, String memo, OrderStatus status, Stamp stamp) {
