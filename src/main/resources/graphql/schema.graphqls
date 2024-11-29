@@ -1,6 +1,24 @@
 type Query {
-    orderList: [Order]
-    stampList: [Stamp]
+    retrieveAllOrderList: [Order!]
+    retrieveAllStampList: [Stamp!]
+}
+
+type Mutation {
+    createNewOrder(createNewOrderRequest: CreateNewOrderRequest!): CreateNewOrderResponse!
+}
+
+input CreateNewOrderRequest {
+    orderDate: String!
+    stampId: Int!
+    content: String!
+    quantity: Int!
+    memo: String
+}
+
+type CreateNewOrderResponse {
+    id: ID!
+    code: String!
+    message: String!
 }
 
 type Order {

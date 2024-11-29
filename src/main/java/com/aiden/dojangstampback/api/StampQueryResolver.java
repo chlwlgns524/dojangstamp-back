@@ -15,7 +15,7 @@ public class StampQueryResolver {
     private final StampService stampService;
 
     @QueryMapping
-    public List<StampDto> stampList() {
+    public List<StampDto> retrieveAllStampList() {
         return stampService.findAllStamps();
     }
 
