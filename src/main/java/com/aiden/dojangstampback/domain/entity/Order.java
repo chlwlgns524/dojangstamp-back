@@ -15,28 +15,20 @@ import java.time.LocalDateTime;
 @Entity
 public class Order {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     @Id
     private Long id;
 
-    @Column(nullable = false)
-    private String content;
-
-    @Column(nullable = false)
-    private Integer quantity;
-
-    @Column(nullable = false)
+    @Column
     private String memo;
+
+    @Column(name = "order_date", nullable = false)
+    private LocalDateTime orderDate;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-
-    @OneToOne
-    @JoinColumn(name = "stamp_id", referencedColumnName = "id", nullable = false)
-    private Stamp stamp;
-
-    @Column(name = "order_date", nullable = false)
-    private LocalDateTime orderDate;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -45,13 +37,12 @@ public class Order {
     private LocalDateTime modifiedAt;
 
     @Builder
-    public Order(String content, Integer quantity, String memo, OrderStatus status, Stamp stamp) {
-        this.content = content;
-        this.quantity = quantity;
+    public Order(String memo, LocalDateTime orderDate) {
         this.memo = memo;
-        this.status = status;
-        this.stamp = stamp;
+        this.orderDate = orderDate;
+        this.status = OrderStatus.PENDING;
         this.createdAt = LocalDateTime.now();
+        this.modifiedAt = LocalDateTime.now();
     }
 
 }
